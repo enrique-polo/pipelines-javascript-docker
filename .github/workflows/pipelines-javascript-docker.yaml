@@ -5,13 +5,13 @@ name: pipelines-javascript-docker
             - main
     workflow_dispatch: {}
 env:
-    ACR_RESOURCE_GROUP: orkeztra-aks
-    AZURE_CONTAINER_REGISTRY: acrworkflow1680801607615
+    ACR_RESOURCE_GROUP: orkeztra-oam
+    AZURE_CONTAINER_REGISTRY: orkeztra
     CLUSTER_NAME: orkeztra-aks
     CLUSTER_RESOURCE_GROUP: orkeztra-aks
-    CONTAINER_NAME: image-workflow-1680801607615
+    CONTAINER_NAME: image-workflow-1680924177503
     DEPLOYMENT_MANIFEST_PATH: |
-        ./app/package.json
+        ./.github/workflows/pipelines-javascript-docker.yaml
 jobs:
     buildImage:
         permissions:
@@ -61,4 +61,4 @@ jobs:
                 action: deploy
                 images: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
                 manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
-                namespace: namespace-workflow-1680801607615
+                namespace: namespace-workflow-1680924177503
